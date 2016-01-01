@@ -5,10 +5,10 @@ I wrote a python script to scrape a folder of HTML files for my online [paycheck
 
 _Because #taxes_
 
-	Disclaimer: anything found in the /sample folder is FAKE data! It's there to show you that the script works.
+**Disclaimer**: anything found in the /sample folder is FAKE data! It's there to show you that the script works.
 
 
 ### To use the sample
-`mkvirtualenv paycheck_scraper`
-`pip install -r requirements.txt`
-`python sample/sample.py`
+	mkvirtualenv paycheck_scraper
+	pip install -r requirements.txt
+	python sample/sample.py
