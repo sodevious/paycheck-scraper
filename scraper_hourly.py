@@ -1,5 +1,5 @@
-from bs4 import BeautifulSoup
 import csv, glob, os
+from bs4 import BeautifulSoup
 
 # Directory of html files
 input_dir = "/Users/nicoledominguez/sites/paycheck-scraper/src/html/"
@@ -18,25 +18,32 @@ for file_name in glob.glob(input_dir+ "*.html"):
 	# Get paystub dates
 	date = record.find(id="paystub_form_tbl").td.get_text(strip=True).strip("Pay stub for period:").lstrip()
 
-	# Get the summary section
+	# Get the relevant sections
 	summary_table = record.find(id="paystub_summary_tbl").find_all('div')
+	pay_table = record.find(id="paystub_pay_tbl").find_all('div')
 
-	# Create a list
+	# Create lists
 	summaries = []
+	pay_rows = []
 
 	# Clean data
 	for item in summary_table:
 		item = item.get_text("", strip=True).encode('utf-8')
 		summaries.append(item)
 
-	# Create items from cleaned array
+	# And more data
+	for item in pay_table:
+		item = item.get_text(",", strip=True).encode('utf-8')
+		pay_rows.append(item)
+
+	# Create items from cleaned arrays
 	total = summaries[0]
 	deductions = summaries[2]
-	taxes = summaries[4]
-	
+	taxes = summaries[4]	
+	hours = pay_rows[4]
+	rate = pay_rows[5]
+
 	# Sample
-	hours = "Hours"
-	rate = "Rate"
 	net = "net"
 
 	f.writerow([date, total, net, hours, rate, deductions])
