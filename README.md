@@ -9,5 +9,6 @@ _Because #taxes_
 
 
 ### To use the sample
-
+`mkvirtualenv paycheck_scraper`
+`pip install -r requirements.txt`
 `python sample.py`
