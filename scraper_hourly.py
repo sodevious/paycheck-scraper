@@ -1,4 +1,4 @@
-import csv, glob, os
+import csv, glob, os, time
 from bs4 import BeautifulSoup
 
 # Directory of html files
@@ -6,7 +6,7 @@ input_dir = "src/html/"
 
 # Create the CSV and header row
 f = csv.writer(open("src/paycheck_data.csv", "w"))
-f.writerow(["Date", "Total Pay", "Net Pay", "Hours", "Rate", "Deductions"]) # Write column headers as the first line
+f.writerow(["Date", "Total Pay", "Net Pay", "Hours", "Rate", "Deductions"])
 
 # Write to CSV
 for file_name in glob.glob(input_dir+ "*.html"):
@@ -49,3 +49,7 @@ for file_name in glob.glob(input_dir+ "*.html"):
 	f.writerow([date, total, net, hours, rate, deductions])
 
 	print date, total, deductions, taxes, net, hours, rate
+
+generated = time.strftime("%I:%M:%S, %d/%m/%Y")
+
+f.writerow(["Generated:", generated, " ", " ", " ", " "])

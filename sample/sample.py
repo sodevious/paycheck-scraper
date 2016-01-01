@@ -1,4 +1,4 @@
-import csv, glob, os
+import csv, glob, os, time
 from bs4 import BeautifulSoup
 
 # Directory of html files
@@ -49,3 +49,8 @@ for file_name in glob.glob(input_dir+ "*.html"):
 	f.writerow([date, total, net, hours, rate, deductions])
 
 	print date, total, deductions, taxes, net, hours, rate
+
+
+generated = time.strftime("%I:%M:%S, %d/%m/%Y")
+
+f.writerow(["Generated:", generated, " ", " ", " ", " "])
