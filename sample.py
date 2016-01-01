@@ -2,10 +2,10 @@ import csv, glob, os
 from bs4 import BeautifulSoup
 
 # Directory of html files
-input_dir = "src/html/"
+input_dir = "sample/html/"
 
 # Create the CSV and header row
-f = csv.writer(open("src/paycheck_data.csv", "w"))
+f = csv.writer(open("sample/sample_data.csv", "w"))
 f.writerow(["Date", "Total Pay", "Net Pay", "Hours", "Rate", "Deductions"]) # Write column headers as the first line
 
 # Write to CSV
