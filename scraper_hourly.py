@@ -6,7 +6,10 @@ input_dir = "src/html/"
 
 # Create the CSV and header row
 f = csv.writer(open("src/paycheck_data.csv", "w"))
-f.writerow(["Date", "Total Pay", "Net Pay", "Hours", "Rate", "Deductions"])
+f.writerow(["Date", "Total Pay", "Net Pay", "Hours", "Rate", "Deductions", "Generated"])
+
+# Add timestamp
+generated = time.strftime("%I:%M:%S, %d/%m/%Y")
 
 # Write to CSV
 for file_name in glob.glob(input_dir+ "*.html"):
@@ -49,11 +52,6 @@ for file_name in glob.glob(input_dir+ "*.html"):
 	rate = pay_rows[5]
 	net = net_rows[1]
 
-	f.writerow([date, total, net, hours, rate, deductions])
+	f.writerow([date, total, net, hours, rate, deductions, generated])
 
-	print date, total, deductions, taxes, net, hours, rate
-
-# Add timestamp
-generated = time.strftime("%I:%M:%S, %d/%m/%Y")
-
-f.writerow(["Generated:", generated, " ", " ", " ", " "])
+	print date, total, deductions, taxes, net, hours, rate, generated
